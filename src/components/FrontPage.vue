@@ -3,7 +3,41 @@
     <PvCard>
       <template #title>Products</template>
       <template #content>
-        <PvDataTable :value="products" striped-rows>
+        <PvMessage v-if="error" severity="error" class="mb-4">
+          <template #icon>
+            <FontAwesomeIcon icon="exclamation-triangle" />
+          </template>
+          <div>
+            <p class="font-semibold">Failed to load products</p>
+            <p class="text-sm mt-1">{{ error }}</p>
+            <PvButton 
+              label="Retry" 
+              severity="secondary" 
+              size="small" 
+              class="mt-2" 
+              @click="fetchProducts"
+            >
+              <FontAwesomeIcon icon="refresh" class="mr-2" />
+              Retry
+            </PvButton>
+          </div>
+        </PvMessage>
+
+        <div v-else-if="loading" class="flex relative">
+          <PvProgressSpinner />
+        </div>
+        
+        <PvDataTable v-else :value="products" striped-rows>
+          <PvColumn field="image" header="" class="w-20">
+            <template #body="{ data }">
+              <img 
+                :src="data.image" 
+                :alt="data.title"
+                class="w-16 h-16 object-cover"
+                @error="handleImageError"
+              />
+            </template>
+          </PvColumn>
           <PvColumn field="title" header="Name" />
           <PvColumn field="price" header="Price">
             <template #body="{ data }">
@@ -44,18 +78,34 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import BasketSmall from './BasketSmall.vue';
-import { Message } from 'primevue';
+import { fetchProducts as apiFetchProducts } from '../api/api.ts';
 
-const products = ref([
-  { id: 0, title: 'Banana', price: 1.2 },
-  { id: 1, title: 'Orange', price: 2.5 },
-  { id: 2, title: 'Tomato', price: 1.6 },
-  { id: 3, title: 'Flour', price: 5.0 },
-]);
-
+const products = ref([]);
 const basket = ref([]);
+const loading = ref(false);
+const error = ref(null);
+
+async function fetchProducts() {
+  loading.value = true;
+  error.value = null;
+  
+  try {
+    const data = await apiFetchProducts(8);
+
+    products.value = data;
+  } catch (err) {
+    error.value = err.message || 'An unknown error occurred';
+  }
+
+  loading.value = false;
+}
+
+function handleImageError(event) {
+  event.target.textContent = 'Image not available';
+}
+
 function getProductQuantity(id) {
   const item = basket.value.find(x => x.id === id);
   return item ? item.quantity : 0;
@@ -82,4 +132,8 @@ function removeProduct(id) {
     basket.value.splice(index, 1);
   }
 }
+
+onMounted(() => {
+  fetchProducts();
+});
 </script>

@@ -7,11 +7,13 @@ import Button from 'primevue/button';
 import Card from 'primevue/card';
 import Column from 'primevue/column';
 import DataTable from 'primevue/datatable';
+import Message from 'primevue/message';
+import ProgressSpinner from 'primevue/progressspinner';
 
 // FontAwesome
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faCartShopping, faPlus, faMinus, faTrash, faWarning } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faPlus, faMinus, faTrash, faWarning, faRefresh, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 // Styles
 import './assets/main.css';
@@ -20,7 +22,7 @@ import './assets/main.css';
 import App from './App.vue';
 
 // Add icons to library
-library.add(faCartShopping, faPlus, faMinus, faTrash, faWarning);
+library.add(faCartShopping, faPlus, faMinus, faTrash, faWarning, faRefresh, faExclamationTriangle);
 
 const app = createApp(App);
 
@@ -39,6 +41,8 @@ app.component('PvButton', Button);
 app.component('PvCard', Card);
 app.component('PvColumn', Column);
 app.component('PvDataTable', DataTable);
+app.component('PvMessage', Message);
+app.component('PvProgressSpinner', ProgressSpinner);
 
 // Register FontAwesome
 app.component('FontAwesomeIcon', FontAwesomeIcon);

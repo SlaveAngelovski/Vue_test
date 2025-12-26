@@ -5,6 +5,16 @@
     </p>
 
     <PvDataTable :value="itemOverview" striped-rows>
+      <PvColumn header="Image" class="w-20">
+        <template #body="{ data }">
+          <img 
+            :src="data.image" 
+            :alt="data.title"
+            class="w-12 h-12 object-cover rounded border"
+            @error="handleImageError"
+          />
+        </template>
+      </PvColumn>
       <PvColumn field="title" header="Name" />
       <PvColumn field="price" header="Price">
         <template #body="{ data }">
@@ -53,6 +63,7 @@ const itemOverview = computed(() =>
       id: item.id,
       title: product.title,
       price: product.price,
+      image: product.image,
       quantity: item.quantity,
       total: item.quantity * product.price,
     };
@@ -67,5 +78,9 @@ const totalPriceStyling = computed(() => ({
   'mt-4 text-lg font-bold': true,
   'text-red-600': total.value > 50,
 }));
+
+function handleImageError(event) {
+  event.target.textContent = 'Image not available';
+}
 
 </script>
