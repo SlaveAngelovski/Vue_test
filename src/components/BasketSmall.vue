@@ -27,7 +27,7 @@
           {{ data.total.toFixed(2) }}
         </template>
       </PvColumn>
-      <PvColumn field="remove" headerStyle="width:3rem">
+      <PvColumn field="remove">
         <template #body="{ data }">
             <button severity="secondary" @click="emit('remove-product', data.id)">
               <FontAwesomeIcon icon="trash" class="opacity-50 hover:opacity-80 transition-opacity" />

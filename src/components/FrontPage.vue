@@ -44,14 +44,16 @@
               {{ data.price.toFixed(2) }}
             </template>
           </PvColumn>
-          <PvColumn header="Add to Basket" class="flex gap-4">
+          <PvColumn header="Add to Basket">
             <template #body="{ data }">
-              <PvButton label="Increment" severity="secondary" @click="addProduct(data.id)">
-                <FontAwesomeIcon icon="plus" />
-              </PvButton>
-              <PvButton label="Decrement" severity="secondary" @click="addProduct(data.id, -1)" :disabled="getProductQuantity(data.id) <= 0">
-                <FontAwesomeIcon icon="minus" />
-              </PvButton>
+              <div class="flex gap-4 justify-center">
+                <PvButton label="Increment" severity="secondary" @click="addProduct(data.id)">
+                  <FontAwesomeIcon icon="plus" />
+                </PvButton>
+                <PvButton label="Decrement" severity="secondary" @click="addProduct(data.id, -1)" :disabled="getProductQuantity(data.id) <= 0">
+                  <FontAwesomeIcon icon="minus" />
+                </PvButton>
+              </div>
             </template>
           </PvColumn>
         </PvDataTable>
