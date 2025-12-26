@@ -26,7 +26,13 @@
         </div>
       </template>
       <template #content>
-        <BasketSmall :items="basket" :products="products" />
+        <Message v-if="!basket?.length" severity="secondary">
+          <template #icon>
+            <FontAwesomeIcon icon="warning" />
+          </template>
+          <span>Your basket is empty.</span>
+        </Message>
+        <BasketSmall v-else :items="basket" :products="products" />
       </template>
     </PvCard>
   </div>
@@ -35,6 +41,7 @@
 <script setup>
 import { ref } from 'vue';
 import BasketSmall from './BasketSmall.vue';
+import { Message } from 'primevue';
 
 const products = ref([
   { id: 0, title: 'Banana', price: 1.2 },

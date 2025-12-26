@@ -11,7 +11,7 @@ import DataTable from 'primevue/datatable';
 // FontAwesome
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faCartShopping, faPlus, faMinus, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faPlus, faMinus, faTrash, faWarning } from '@fortawesome/free-solid-svg-icons';
 
 // Styles
 import './assets/main.css';
@@ -20,7 +20,7 @@ import './assets/main.css';
 import App from './App.vue';
 
 // Add icons to library
-library.add(faCartShopping, faPlus, faMinus, faTrash);
+library.add(faCartShopping, faPlus, faMinus, faTrash, faWarning);
 
 const app = createApp(App);
 
