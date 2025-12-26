@@ -17,6 +17,13 @@
           {{ data.total.toFixed(2) }}
         </template>
       </PvColumn>
+      <PvColumn field="remove" headerStyle="width:3rem">
+        <template #body="{ data }">
+            <button severity="secondary" @click="emit('remove-product', data.id)">
+              <FontAwesomeIcon icon="trash" class="opacity-50 hover:opacity-80 transition-opacity" />
+            </button>
+        </template>
+      </PvColumn>
     </PvDataTable>
 
     <p :class="totalPriceStyling">
@@ -32,6 +39,8 @@ const props = defineProps({
   items: { type: Array, required: true },
   products: { type: Array, required: true },
 });
+
+const emit = defineEmits(['remove-product']);
 
 const productCount = computed(() =>
   props.items.reduce((sum, item) => sum + item.quantity, 0),

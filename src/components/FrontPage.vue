@@ -32,7 +32,7 @@
           </template>
           <span>Your basket is empty.</span>
         </Message>
-        <BasketSmall v-else :items="basket" :products="products" />
+        <BasketSmall v-else :items="basket" :products="products" @remove-product="removeProduct" />
       </template>
     </PvCard>
   </div>
@@ -59,6 +59,14 @@ function addProduct(id, quantity = 1) {
     existingItem.quantity += quantity;
   } else {
     basket.value.push({ id, quantity });
+  }
+}
+
+function removeProduct(id) {
+  const index = basket.value.findIndex((x) => x.id === id);
+  
+  if (index !== -1) {
+    basket.value.splice(index, 1);
   }
 }
 </script>
