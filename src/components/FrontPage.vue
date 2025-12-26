@@ -10,9 +10,14 @@
               {{ data.price.toFixed(2) }}
             </template>
           </PvColumn>
-          <PvColumn header="Add to Basket">
+          <PvColumn header="Add to Basket" class="flex gap-4">
             <template #body="{ data }">
-              <PvButton label="Add" @click="addProduct(data.id)" />
+              <PvButton label="Increment" severity="secondary" @click="addProduct(data.id)">
+                <FontAwesomeIcon icon="plus" />
+              </PvButton>
+              <PvButton label="Decrement" severity="secondary" @click="addProduct(data.id, -1)" :disabled="data.quantity <= 0">
+                <FontAwesomeIcon icon="minus" />
+              </PvButton>
             </template>
           </PvColumn>
         </PvDataTable>
@@ -57,14 +62,18 @@ function addProduct(id, quantity = 1) {
 
   if (existingItem) {
     existingItem.quantity += quantity;
-  } else {
+
+    if (existingItem.quantity <= 0) {
+      removeProduct(id);
+    }
+  } else if (quantity > 0) {
     basket.value.push({ id, quantity });
   }
 }
 
 function removeProduct(id) {
   const index = basket.value.findIndex((x) => x.id === id);
-  
+
   if (index !== -1) {
     basket.value.splice(index, 1);
   }
