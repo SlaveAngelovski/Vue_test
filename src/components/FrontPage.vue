@@ -31,12 +31,12 @@
         </div>
       </template>
       <template #content>
-        <Message v-if="!basket?.length" severity="secondary">
+        <PvMessage v-if="!basket?.length" severity="secondary">
           <template #icon>
             <FontAwesomeIcon icon="warning" />
           </template>
           <span>Your basket is empty.</span>
-        </Message>
+        </PvMessage>
         <BasketSmall v-else :items="basket" :products="products" @remove-product="removeProduct" />
       </template>
     </PvCard>
