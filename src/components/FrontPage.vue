@@ -1,18 +1,6 @@
 <template>
   <div class="mx-auto max-w-4xl space-y-6">
     <PvCard>
-      <template #title>
-        <div class="flex items-center gap-2">
-          <FontAwesomeIcon icon="cart-shopping" />
-          Basket
-        </div>
-      </template>
-      <template #content>
-        <BasketSmall :items="basket" :products="products" />
-      </template>
-    </PvCard>
-
-    <PvCard>
       <template #title>Products</template>
       <template #content>
         <PvDataTable :value="products" striped-rows>
@@ -28,6 +16,17 @@
             </template>
           </PvColumn>
         </PvDataTable>
+      </template>
+    </PvCard>
+     <PvCard>
+      <template #title>
+        <div class="flex items-center gap-2">
+          <FontAwesomeIcon icon="cart-shopping" />
+          Basket
+        </div>
+      </template>
+      <template #content>
+        <BasketSmall :items="basket" :products="products" />
       </template>
     </PvCard>
   </div>
