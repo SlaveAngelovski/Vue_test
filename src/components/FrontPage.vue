@@ -15,7 +15,7 @@
               <PvButton label="Increment" severity="secondary" @click="addProduct(data.id)">
                 <FontAwesomeIcon icon="plus" />
               </PvButton>
-              <PvButton label="Decrement" severity="secondary" @click="addProduct(data.id, -1)" :disabled="data.quantity <= 0">
+              <PvButton label="Decrement" severity="secondary" @click="addProduct(data.id, -1)" :disabled="getProductQuantity(data.id) <= 0">
                 <FontAwesomeIcon icon="minus" />
               </PvButton>
             </template>
@@ -56,6 +56,10 @@ const products = ref([
 ]);
 
 const basket = ref([]);
+function getProductQuantity(id) {
+  const item = basket.value.find(x => x.id === id);
+  return item ? item.quantity : 0;
+}
 
 function addProduct(id, quantity = 1) {
   const existingItem = basket.value.find((x) => x.id === id);
