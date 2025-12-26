@@ -58,7 +58,8 @@ const productCount = computed(() =>
 
 const itemOverview = computed(() =>
   props.items.map((item) => {
-    const product = props.products[item.id];
+    const product = props.products.find(p => p.id === item.id);
+
     return {
       id: item.id,
       title: product.title,
