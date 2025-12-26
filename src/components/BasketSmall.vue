@@ -19,7 +19,7 @@
       </PvColumn>
     </PvDataTable>
 
-    <p class="mt-4 text-lg font-bold">
+    <p :class="totalPriceStyling">
       Total price: {{ total.toFixed(2) }}
     </p>
   </div>
@@ -53,4 +53,10 @@ const itemOverview = computed(() =>
 const total = computed(() =>
   itemOverview.value.reduce((sum, item) => sum + item.total, 0),
 );
+
+const totalPriceStyling = computed(() => ({
+  'mt-4 text-lg font-bold': true,
+  'text-red-600': total.value > 50,
+}));
+
 </script>
