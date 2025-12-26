@@ -42,6 +42,7 @@ I handled :
    * The empty basket state on the `addProduct` function with checks and by disabling the decrement button on the ui if the product is not present.
    * The api handles failures by throwing an error and showing a message with a retry button.
    * Handled image loading errors with fallback placeholders.
+   
 > - What trade-offs did you consider?
 * Chose only one task from the second part due to the time constraint.
 
@@ -50,6 +51,8 @@ I handled :
 * Component communication: Chose to emit events (proper Vue pattern) vs direct prop mutation
 
 * Error handling: I chose to show error states with retry (more code, better UX) vs simple error logging (less code, worse UX)
+
+* Used computed styling `totalPriceStyling` on the `BasketSmall.vue` to avoid unnecessary re-renders.
 
 ---
 
