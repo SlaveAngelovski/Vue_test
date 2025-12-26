@@ -39,20 +39,20 @@ Check the tasks you completed:
 
 > - How did you handle edge cases?
 I handled :
-   * The empty basket state on the `addProduct` function with checks and by disabling the decrement button on the ui if the product is not present.
-   * The api handles failures by throwing an error and showing a message with a retry button.
-   * Handled image loading errors with fallback placeholders.
-   
+   -- The empty basket state on the `addProduct` function with checks and by disabling the decrement button on the ui if the product is not present.
+   -- The api handles failures by throwing an error and showing a message with a retry button.
+   -- Handled image loading errors with fallback placeholders.
+
 > - What trade-offs did you consider?
-* Chose only one task from the second part due to the time constraint.
+-- Chose only one task from the second part due to the time constraint.
 
-* API structure: I chose to keep products as an array instead of converting it to an object, I didnt have the time.
+-- API structure: I chose to keep products as an array instead of converting it to an object, I didnt have the time.
 
-* Component communication: Chose to emit events (proper Vue pattern) vs direct prop mutation
+-- Component communication: Chose to emit events (proper Vue pattern) vs direct prop mutation
 
-* Error handling: I chose to show error states with retry (more code, better UX) vs simple error logging (less code, worse UX)
+-- Error handling: I chose to show error states with retry (more code, better UX) vs simple error logging (less code, worse UX)
 
-* Used computed styling `totalPriceStyling` on the `BasketSmall.vue` to avoid unnecessary re-renders.
+-- Used computed styling `totalPriceStyling` on the `BasketSmall.vue` to avoid unnecessary re-renders.
 
 ---
 
@@ -60,11 +60,11 @@ I handled :
 
 > Describe any challenges you faced and how you solved them.
 
-I had not encountered any challenges.
+-- I had not encountered any challenges.
 
-There was a bug on the `BasketSmall.vue` on how it was selecting the products, by an array index instead of the product id, when I used the real api this was apparent, so I had to fix that and use the product id instead.
+-- There was a bug on the `BasketSmall.vue` on how it was selecting the products, by an array index instead of the product id, when I used the real api this was apparent, so I had to fix that and use the product id instead.
 
-The disabled button state on the decrement wasnt updating with my initial solution, so I had to fix that as well.
+-- The disabled button state on the decrement wasnt updating with my initial solution, so I had to fix that as well.
 
 ---
 
